@@ -3,33 +3,151 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dynamic Sidebar</title>
+    <title>Sunda Studio | Web Design & Branding</title>
+    <meta
+      name="description"
+      content="Sunda Studio builds polished websites and brand experiences for small businesses and startups."
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <nav class="navigation">
-      <div class="logo">
-        <img src="" alt="" srcset="" />
-        <p>Hii</p>
-      </div>
+    <header class="site-header">
+      <nav class="navigation">
+        <a href="index.html" class="logo">
+          <img src="image/Logo.jpg" alt="Sunda Studio logo" />
+          <span>Sunda Studio</span>
+        </a>
 
-      <div class="toggleMenu" onclick="toggleIcone()">☰</div>
-      <ul class="navItems">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="About.html">About</a></li>
-        <li><a href="Services.html">Services</a></li>
-        <li>
-          <a href="Contact.html"
-            ><button class="ContactButton">Contact</button></a
-          >
-        </li>
-      </ul>
-    </nav>
+        <button class="toggleMenu" id="menuToggle" aria-expanded="false" aria-controls="navItems">
+          ☰
+        </button>
+
+        <ul class="navItems" id="navItems">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="contact.html" class="ContactButton">Book a Call</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Creative web design & digital branding</p>
+          <h1>Designing websites that make your brand look trusted, modern, and easy to use.</h1>
+          <p>
+            I help businesses turn visitors into clients with polished websites, clear messaging, and performance-first layouts.
+          </p>
+          <div class="hero-actions">
+            <a href="contact.html" class="button primary">Start a Project</a>
+            <a href="#services" class="button secondary">See Services</a>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="hero-panel-card">
+            <span class="panel-label">Featured launch</span>
+            <h3>Studio landing page redesign</h3>
+            <p>Modern messaging, vibrant visuals, and a conversion-focused homepage for a creative business.</p>
+          </div>
+
+          <div class="hero-stats">
+            <div>
+              <strong>5+</strong>
+              <span>Years experience</span>
+            </div>
+            <div>
+              <strong>120+</strong>
+              <span>Projects launched</span>
+            </div>
+            <div>
+              <strong>99%</strong>
+              <span>Client satisfaction</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" id="services">
+        <div class="section-head">
+          <h2 class="section-title">Services made for ambitious brands</h2>
+          <p class="section-intro">
+            From launch-ready websites to refreshed brand systems, I build digital experiences that feel polished and professional.
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <h3>Web Design</h3>
+            <p>Responsive websites that look beautiful on every screen and keep the user focused on your message.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Brand Identity</h3>
+            <p>Logo, color palette, and typography systems that give your business a consistent and memorable look.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Landing Pages</h3>
+            <p>Fast, high-converting landing pages built to support launches, offers, and campaigns.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-preview" id="about">
+        <div class="about-image">
+          <span>Strategic design with a human touch — built for clarity and growth.</span>
+        </div>
+
+        <div class="about-info">
+          <span class="eyebrow">About Sunda</span>
+          <h2>Web design that helps small teams and founders move forward.</h2>
+          <p>
+            I’m Sunda, a designer based in Australia. I build websites that help businesses feel confident online and make their message easy to understand.
+          </p>
+          <ul class="feature-list">
+            <li>Simple, strong visual systems</li>
+            <li>Fast, polished layouts</li>
+            <li>Mobile-friendly user experiences</li>
+          </ul>
+          <a href="about.html" class="button tertiary">Read the Story</a>
+        </div>
+      </section>
+
+      <section class="contact-cta" id="contact">
+        <div>
+          <h2>Ready to launch a website that works for your business?</h2>
+          <p>Send a message and let’s create a refined website that sounds and looks like your brand.</p>
+        </div>
+        <a href="contact.html" class="button primary">Book a Call</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© 2026 Sunda Studio</p>
+        <nav class="footer-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </footer>
+
     <script>
-      function toggleIcone() {
-        const navLinks = document.getElementById("Navlinks");
-        navLinks.classList.toggle("active");
+      const menuToggle = document.getElementById('menuToggle');
+      const navItems = document.getElementById('navItems');
+
+      if (menuToggle && navItems) {
+        menuToggle.addEventListener('click', () => {
+          const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+          menuToggle.setAttribute('aria-expanded', String(!expanded));
+          navItems.classList.toggle('active');
+        });
       }
     </script>
   </body>

@@ -1,0 +1,93 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Sunda Studio</title>
+    <meta
+      name="description"
+      content="Contact Sunda Studio to discuss your website, branding, or digital project."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav class="navigation">
+        <a href="index.html" class="logo">
+          <img src="image/Logo.jpg" alt="Sunda Studio logo" />
+          <span>Sunda Studio</span>
+        </a>
+
+        <button class="toggleMenu" id="menuToggle" aria-expanded="false" aria-controls="navItems">
+          ☰
+        </button>
+
+        <ul class="navItems" id="navItems">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html" class="ContactButton">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Let’s connect</p>
+          <h1>Ready to bring your next website or brand project to life?</h1>
+          <p>
+            Send a message and I’ll follow up with a simple, straightforward plan for your digital project.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-head">
+          <h2 class="section-title">Contact details</h2>
+          <p class="section-intro">Reach me through email or use the contact form below to share your project goals.</p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <h3>Email</h3>
+            <p>hello@sundastudio.com</p>
+          </article>
+          <article class="service-card">
+            <h3>Location</h3>
+            <p>Melbourne, Australia</p>
+          </article>
+          <article class="service-card">
+            <h3>Availability</h3>
+            <p>Open for new projects and ongoing collaboration.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© 2026 Sunda Studio</p>
+        <nav class="footer-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.getElementById('menuToggle');
+      const navItems = document.getElementById('navItems');
+      if (menuToggle && navItems) {
+        menuToggle.addEventListener('click', () => {
+          const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+          menuToggle.setAttribute('aria-expanded', String(!expanded));
+          navItems.classList.toggle('active');
+        });
+      }
+    </script>
+  </body>
+</html>
