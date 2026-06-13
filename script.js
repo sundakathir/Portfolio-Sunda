@@ -75,8 +75,23 @@ if (form) {
     };
 
     // Validate form
+    const msgEl = form.querySelector('.form-message');
+    function showMessage(text, type = 'info') {
+      if (!msgEl) {
+        alert(text);
+        return;
+      }
+      msgEl.textContent = text;
+      msgEl.classList.remove('success', 'error', 'info');
+      msgEl.classList.add(type);
+      msgEl.style.display = 'block';
+      if (type === 'success') {
+        setTimeout(() => { msgEl.style.display = 'none'; }, 6000);
+      }
+    }
+
     if (!formData.name || !formData.email || !formData.contactNo || !formData.message) {
-      alert('Please fill in all fields');
+      showMessage('Please fill in all fields', 'error');
       return;
     }
 
@@ -91,20 +106,31 @@ if (form) {
       // REPLACE 'YOUR_GOOGLE_SCRIPT_URL' with your actual Google Apps Script URL
       const response = await fetch('https://script.google.com/macros/s/AKfycbwtYyDNOJtxBzBHIoGzG2A6YMJ65dxRDFrbiTsNq7wgL75ucW9jhHLW_9QBwsemVwSf/exec', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(formData)
       });
 
       const result = await response.json();
 
       if (result.status === 'success') {
-        alert('✓ Your message has been sent successfully! We\'ll get back to you soon.');
+        showMessage('✓ Your message has been sent successfully! We\'ll get back to you soon.', 'success');
         form.reset();
       } else {
-        alert('Error sending message. Please try again.');
+        showMessage('Error sending message. Please try again.', 'error');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Error sending message. Please try again.');
+      const msgElCatch = form.querySelector('.form-message');
+      if (msgElCatch) {
+        msgElCatch.textContent = 'Error sending message. Please try again.';
+        msgElCatch.classList.remove('success');
+        msgElCatch.classList.add('error');
+        msgElCatch.style.display = 'block';
+      } else {
+        alert('Error sending message. Please try again.');
+      }
     } finally {
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;

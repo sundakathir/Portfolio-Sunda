@@ -500,6 +500,28 @@ button {
   transform: translateY(0);
 }
 
+/* Inline form message */
+.form-message {
+  display: none;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.form-message.success {
+  background: rgba(17, 166, 90, 0.08);
+  color: #0b6f3a;
+  border: 1px solid rgba(17, 166, 90, 0.12);
+}
+
+.form-message.error {
+  background: rgba(255, 90, 85, 0.06);
+  color: #a12a2a;
+  border: 1px solid rgba(255, 90, 85, 0.12);
+}
+
 @media (max-width: 1000px) {
   .hero {
     grid-template-columns: 1fr;
