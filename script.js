@@ -57,3 +57,57 @@ function createMenu(items) {
 }
 
 menuContainer.append(...createMenu(menuData));
+
+// ======== FORM SUBMISSION TO GOOGLE SHEETS ========
+const form = document.querySelector('.con form');
+
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Get form data
+    const formData = {
+      name: document.getElementById('name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      contactNo: document.getElementById('contactNo').value.trim(),
+      message: document.getElementById('message').value.trim(),
+      timestamp: new Date().toLocaleString()
+    };
+
+    // Validate form
+    if (!formData.name || !formData.email || !formData.contactNo || !formData.message) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    try {
+      // Send data to Google Apps Script
+      // REPLACE 'YOUR_GOOGLE_SCRIPT_URL' with your actual Google Apps Script URL
+      const response = await fetch('https://script.google.com/macros/s/AKfycbwtYyDNOJtxBzBHIoGzG2A6YMJ65dxRDFrbiTsNq7wgL75ucW9jhHLW_9QBwsemVwSf/exec', {
+        method: 'POST',
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+
+      if (result.status === 'success') {
+        alert('✓ Your message has been sent successfully! We\'ll get back to you soon.');
+        form.reset();
+      } else {
+        alert('Error sending message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error sending message. Please try again.');
+    } finally {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+}
